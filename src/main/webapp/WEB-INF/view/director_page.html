@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movies Database</title>
+</head>
+
+<body>
+<div class="container">
+
+    <div>
+        <label for="firstName">Director's name</label>
+        <p id="firstName" th:text="${director.getFirstName()} + ' ' + ${director.getLastName()}"/>
+    </div>
+
+    <div>
+        <label for="firstName">Filmography</label>
+    </div>
+
+    <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Rank</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="movie:${director.getMovies()}">
+            <td th:text="${movie.getId()}"/>
+            <td th:text="${movie.getName()}"/>
+            <td th:text="${movie.getYear()}"/>
+            <td th:text="${movie.getRank()}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Go to main page</a>
+</div>
+</body>
+</html>

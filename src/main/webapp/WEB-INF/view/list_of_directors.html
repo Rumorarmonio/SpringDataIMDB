@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies Database</title>
+</head>
+
+<body>
+<div>
+
+    <h3>
+        <span th:text="${param.get('genre')}"/> directors
+    </h3>
+
+    <ul>
+        <li th:each="director:${directors}">
+            <a th:href="@{/director_page(id = ${director.getId()})}"
+               th:text="${director.getName()} + ', ' + ${director.getProb()}"></a>
+        </li>
+    </ul>
+
+    <div th:if="${directors.getTotalPages() > 1}">
+        <a th:if="${directors.getNumber() > 0 }"
+           th:href="@{/list_of_directors(numberOfLines = ${param.get('numberOfLines')}, genre = ${param.get('genre')},
+               page = ${directors.getNumber() - 1}, sort = ${sort} + ',' + ${dir})}">Previous</a>
+
+        <a th:if="${directors.getNumber() < directors.getTotalPages() - 1}"
+           th:href="@{/list_of_directors(numberOfLines = ${param.get('numberOfLines')}, genre = ${param.get('genre')},
+               page = ${directors.getNumber() + 1},sort = ${sort} + ',' + ${dir})}">Next</a>
+    </div>
+    <a th:href="@{/}">Go to main page</a>
+</div>
+</body>
+</html>

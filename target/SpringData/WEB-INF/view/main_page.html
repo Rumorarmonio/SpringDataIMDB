@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movies Database</title>
+</head>
+
+<body>
+<div>
+    <form th:action="@{/list_of_directors}" method="get">
+
+        <div>Number of lines <input type="number" name="numberOfLines"></div>
+
+        <div>Genre <select name="genre">
+            <option th:each="genre:${genres}" th:value="${genre}" th:text="${genre}"/>
+        </select></div>
+
+        <div>Sort by <select name="sort">
+            <option value="firstName,asc">the authors' first name in alphabet order</option>
+            <option value="firstName,desc">the authors' first name in reverse alphabet order</option>
+            <option value="genres.prob,asc">a prob from lowest to highest</option>
+            <option value="genres.prob,desc">a prob from highest to lowest</option>
+        </select></div>
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>
