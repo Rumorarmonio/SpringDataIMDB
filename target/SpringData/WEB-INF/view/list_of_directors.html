@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Movies Database</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 
 <body>
-<div>
+<div class = "container">
 
-    <h3>
+    <h3 class = "text-danger">
         <span th:text="${param.get('genre')}"/> directors
     </h3>
 
@@ -20,7 +22,7 @@
     </ul>
 
     <div th:if="${directors.getTotalPages() > 1}">
-        <a th:if="${directors.getNumber() > 0 }"
+        <a th:if="${directors.getNumber() > 0}"
            th:href="@{/list_of_directors(numberOfLines = ${param.get('numberOfLines')}, genre = ${param.get('genre')},
                page = ${directors.getNumber() - 1}, sort = ${sort} + ',' + ${dir})}">Previous</a>
 

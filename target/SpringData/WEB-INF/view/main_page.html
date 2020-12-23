@@ -4,24 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Movies Database</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 
 <body>
-<div>
+<div class="container">
     <form th:action="@{/list_of_directors}" method="get">
 
-        <div>Number of lines <input type="number" name="numberOfLines"></div>
+        <div class="form-group">
+            <label for="numberOfLines">Number of lines</label>
+            <input type="number" id="numberOfLines" name="numberOfLines" class="form-control">
+        </div>
 
-        <div>Genre <select name="genre">
-            <option th:each="genre:${genres}" th:value="${genre}" th:text="${genre}"/>
-        </select></div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" class="form-control">
+                <option th:each="genre:${genres}" th:value="${genre}" th:text="${genre}"/>
+            </select>
+        </div>
 
-        <div>Sort by <select name="sort">
-            <option value="firstName,asc">the authors' first name in alphabet order</option>
-            <option value="firstName,desc">the authors' first name in reverse alphabet order</option>
-            <option value="genres.prob,asc">a prob from lowest to highest</option>
-            <option value="genres.prob,desc">a prob from highest to lowest</option>
-        </select></div>
+        <div class="form-group"><label for="sort">Sort by</label>
+            <select id="sort" name="sort" class = "form-control">
+                <option value="firstName,asc">the authors' first name in alphabet order</option>
+                <option value="firstName,desc">the authors' first name in reverse alphabet order</option>
+                <option value="genres.prob,asc">a prob from lowest to highest</option>
+                <option value="genres.prob,desc">a prob from highest to lowest</option>
+            </select>
+
+        </div>
         <button type="submit">Search</button>
     </form>
 </div>
